@@ -8,8 +8,10 @@ void setup() {
 }
 
 void draw() {
+    background(0);
     pushMatrix();
-    translate(50, 500);
+    translate(-camera.pos.x, -camera.pos.y);
+    scale(camera.zoom);
     planet.draw();
     popMatrix();
 
