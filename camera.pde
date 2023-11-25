@@ -16,7 +16,7 @@ static class Camera {
     }
 
     void translate(float x, float y) {
-        pos.add(x, y);
+        pos.add(x / zoom, y / zoom);
     }
 
     void zoom(float amount) {
