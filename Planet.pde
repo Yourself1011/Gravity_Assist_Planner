@@ -1,11 +1,11 @@
 class Planet {
 // FIELDS
   PVector pos;
-  int mass, radius ;
+  float mass, radius ;
   float xVel, yVel;
 
   
-  Planet(int xP, int yP, int m, int r, float xV, float yV ) {
+  Planet(int xP, int yP, float m, float r, float xV, float yV ) {
     this.pos = new PVector (xP, yP);
     this.mass = m;
     //this.col = c;
@@ -16,6 +16,7 @@ class Planet {
     }
 
   void drawPlanet() {
+    fill(255);
     circle(this.pos.x, this.pos.y, this.radius);
     this.pos.x += xVel;
         
