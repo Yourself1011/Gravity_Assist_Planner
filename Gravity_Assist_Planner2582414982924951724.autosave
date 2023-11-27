@@ -1,0 +1,11 @@
+Planet planet = new Planet();
+Star star = new Star();
+
+void setup() {
+    fullScreen();
+}
+
+void draw() {
+    planet.draw();
+    star.draw();
+}
