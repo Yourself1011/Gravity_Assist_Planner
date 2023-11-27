@@ -13,16 +13,17 @@ void setup() {
 
 void draw() {
     background(0);
-    pushMatrix();
-    scale(camera.zoom);
-    planet.drawPlanet();
-    translate(-camera.pos.x, -camera.pos.y);
-    popMatrix();
     
     for(int i = 0; i < stars.length; i++){
       stars[i].draw();
       stars[i].move();
       stars[i].update();
     }
-
+    
+    pushMatrix();
+    scale(camera.zoom);
+    planet.drawPlanet();
+    translate(-camera.pos.x, -camera.pos.y);
+    popMatrix();
+    
 }
