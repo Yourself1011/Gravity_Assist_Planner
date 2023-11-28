@@ -5,8 +5,8 @@ class Star{
   PVector velocity, accelerate, location;
 
  Star(){
-   location = new PVector(random(0,width), random(0,height));
-   s = random(0, 5);
+   location = new PVector(random(-1e8,1e8), random(-1e8,1e8));
+   s = random(5e4, 1e5);
  }
  
  void draw(){

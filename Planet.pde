@@ -1,24 +1,17 @@
-class Planet {
+class Planet extends GravityObject {
 // FIELDS
-  PVector pos;
-  float mass, radius ;
-  float xVel, yVel;
+  float radius;
 
   
   Planet(int xP, int yP, float m, float r, float xV, float yV ) {
-    this.pos = new PVector (xP, yP);
-    this.mass = m;
+    super(new PVector(0, 0), new PVector(xV, yV), new PVector(xP, yP), m);
     //this.col = c;
     this.radius = r;
-    this.xVel = xV;
-    this.yVel = yV;
-      
     }
 
   void drawPlanet() {
+    move();
     fill(255);
-    circle(this.pos.x, this.pos.y, this.radius);
-    this.pos.x += xVel;
-        
+    circle(this.pos[0].x, this.pos[0].y, this.radius);
     }
 }

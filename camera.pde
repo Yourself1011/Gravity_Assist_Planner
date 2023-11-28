@@ -3,7 +3,7 @@ Camera camera = Camera.getInstance();
 static class Camera {
     static Camera instance;
     PVector pos = new PVector(0, 0);
-    float zoom = 1;
+    float zoom = 0.0001;
 
     private Camera() {}
 
