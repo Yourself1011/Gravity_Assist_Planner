@@ -2,9 +2,8 @@ class Star{
   float x;
   float y;
   float s;
-  PVector velocity, accelerate;
-  PVector location;
-  
+  PVector velocity, accelerate, location;
+
  Star(){
    location = new PVector(random(0,width), random(0,height));
    s = random(0, 5);
@@ -13,11 +12,10 @@ class Star{
  void draw(){
    fill(255);
    circle(location.x,location.y,s);
-
  }
  
  void move(){
-   accelerate = new PVector(random(-0.01,0.01), random(-0.1, 0.1));
+   accelerate = new PVector(random(-0.10,-0.1),0);
    velocity = new PVector(0,0);
  }
  
@@ -25,6 +23,4 @@ class Star{
    velocity.add(accelerate);
    location.add(velocity);   
  }
-
-
 }
