@@ -14,9 +14,57 @@
  * =========================================================
  */
 
-public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:275695:
-  println("button1 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button1:275695:
+public void slider1_change1(GSlider source, GEvent event) { //_CODE_:spMass:266849:
+  println("spMass - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:spMass:266849:
+
+public void slider2_change1(GSlider source, GEvent event) { //_CODE_:pMass:539922:
+  println("pMass - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:pMass:539922:
+
+public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:253720:
+  println("spPreset - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:spPreset:253720:
+
+public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241108:
+  println("pPreset - GDropList >> GEvent." + event + " @ " + millis());
+} //_CODE_:pPreset:241108:
+
+public void slider1_change2(GSlider source, GEvent event) { //_CODE_:pOrbitSpeed:346573:
+  println("pOrbitSpeed - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:pOrbitSpeed:346573:
+
+public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSpeed:483261:
+  println("spInitialSpeed - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:spInitialSpeed:483261:
+
+public void slider1_change4(GSlider source, GEvent event) { //_CODE_:pInitialPos:965079:
+  println("pInitialPos - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:pInitialPos:965079:
+
+public void slider2_change2(GSlider source, GEvent event) { //_CODE_:pInitialAngle:697099:
+  println("pInitialAngle - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:pInitialAngle:697099:
+
+public void button1_click1(GButton source, GEvent event) { //_CODE_:Demo1:443366:
+  println("Demo1 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:Demo1:443366:
+
+public void button2_click1(GButton source, GEvent event) { //_CODE_:demo2:312806:
+  println("demo2 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:demo2:312806:
+
+public void button3_click1(GButton source, GEvent event) { //_CODE_:demo3:711930:
+  println("demo3 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:demo3:711930:
+
+public void button4_click1(GButton source, GEvent event) { //_CODE_:demo4:484823:
+  println("demo4 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:demo4:484823:
+
+synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:window1:823739:
+  appc.background(230);
+} //_CODE_:window1:823739:
 
 
 
@@ -27,11 +75,75 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  button1 = new GButton(this, 0, 36, 80, 30);
-  button1.setText("Face text");
-  button1.addEventHandler(this, "button1_click1");
+  spMass = new GSlider(this, 25, 38, 147, 40, 10.0);
+  spMass.setLimits(300.0, 200.0, 400.0);
+  spMass.setNumberFormat(G4P.DECIMAL, 2);
+  spMass.setOpaque(false);
+  spMass.addEventHandler(this, "slider1_change1");
+  pMass = new GSlider(this, 243, 38, 161, 40, 10.0);
+  pMass.setLimits(2000.0, 1000.0, 100000.0);
+  pMass.setNumberFormat(G4P.DECIMAL, 2);
+  pMass.setOpaque(false);
+  pMass.addEventHandler(this, "slider2_change1");
+  togGroup1 = new GToggleGroup();
+  spPreset = new GDropList(this, 44, 221, 103, 80, 3, 10);
+  spPreset.setItems(loadStrings("list_253720"), 0);
+  spPreset.addEventHandler(this, "spPresetOpened");
+  pPreset = new GDropList(this, 270, 126, 101, 80, 3, 10);
+  pPreset.setItems(loadStrings("list_241108"), 0);
+  pPreset.addEventHandler(this, "pPresetOpened");
+  pOrbitSpeed = new GSlider(this, 242, 76, 163, 40, 10.0);
+  pOrbitSpeed.setLimits(0.5, 0.0, 1.0);
+  pOrbitSpeed.setNumberFormat(G4P.DECIMAL, 2);
+  pOrbitSpeed.setOpaque(false);
+  pOrbitSpeed.addEventHandler(this, "slider1_change2");
+  spInitialSpeed = new GSlider(this, 22, 79, 149, 40, 10.0);
+  spInitialSpeed.setLimits(0.5, 0.0, 1.0);
+  spInitialSpeed.setNumberFormat(G4P.DECIMAL, 2);
+  spInitialSpeed.setOpaque(false);
+  spInitialSpeed.addEventHandler(this, "slider1_change3");
+  pInitialPos = new GSlider(this, 23, 121, 149, 40, 10.0);
+  pInitialPos.setLimits(0.5, 0.0, 1.0);
+  pInitialPos.setNumberFormat(G4P.DECIMAL, 2);
+  pInitialPos.setOpaque(false);
+  pInitialPos.addEventHandler(this, "slider1_change4");
+  pInitialAngle = new GSlider(this, 26, 163, 147, 40, 10.0);
+  pInitialAngle.setLimits(0.5, 0.0, 1.0);
+  pInitialAngle.setNumberFormat(G4P.DECIMAL, 2);
+  pInitialAngle.setOpaque(false);
+  pInitialAngle.addEventHandler(this, "slider2_change2");
+  Demo1 = new GButton(this, 214, 196, 80, 30);
+  Demo1.setText("Demo 1");
+  Demo1.addEventHandler(this, "button1_click1");
+  demo2 = new GButton(this, 333, 195, 80, 30);
+  demo2.setText("Demo 2");
+  demo2.addEventHandler(this, "button2_click1");
+  demo3 = new GButton(this, 214, 243, 80, 30);
+  demo3.setText("Demo 3");
+  demo3.addEventHandler(this, "button3_click1");
+  demo4 = new GButton(this, 334, 242, 80, 30);
+  demo4.setText("Demo 4");
+  demo4.addEventHandler(this, "button4_click1");
+  window1 = GWindow.getWindow(this, "Window title", 0, 0, 240, 120, JAVA2D);
+  window1.noLoop();
+  window1.setActionOnClose(G4P.KEEP_OPEN);
+  window1.addDrawHandler(this, "win_draw1");
+  window1.loop();
 }
 
 // Variable declarations 
 // autogenerated do not edit
-GButton button1; 
+GSlider spMass; 
+GSlider pMass; 
+GToggleGroup togGroup1; 
+GDropList spPreset; 
+GDropList pPreset; 
+GSlider pOrbitSpeed; 
+GSlider spInitialSpeed; 
+GSlider pInitialPos; 
+GSlider pInitialAngle; 
+GButton Demo1; 
+GButton demo2; 
+GButton demo3; 
+GButton demo4; 
+GWindow window1;

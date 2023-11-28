@@ -15,7 +15,6 @@ void draw() {
     background(0);
     pushMatrix();
     scale(camera.zoom);
-    planet.drawPlanet();
     translate(-camera.pos.x, -camera.pos.y);
     popMatrix();
     
@@ -24,5 +23,6 @@ void draw() {
       stars[i].move();
       stars[i].update();
     }
+    planet.drawPlanet();
 
 }
