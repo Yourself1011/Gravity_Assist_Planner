@@ -13,7 +13,7 @@ void setup() {
 
 void draw() {
     background(0);
-    
+    //drawing stars    
     for(int i = 0; i < stars.length; i++){
       stars[i].draw();
       stars[i].move();

@@ -15,7 +15,7 @@ class Star{
  }
  
  void move(){
-   accelerate = new PVector(random(-0.03,-0.01), random(-0.1, 0.1));
+   accelerate = new PVector(random(-0.10,-0.1),0);
    velocity = new PVector(0,0);
  }
  
