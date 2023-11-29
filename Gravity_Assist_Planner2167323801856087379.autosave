@@ -1,5 +1,6 @@
 import g4p_controls.*;
 
+Planet planet = new Planet(100, 200, 5.972e24, 6378100, 1);
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
 Spacecraft spacecraft = new Spacecraft();
 Star [] stars = new Star [1000];
