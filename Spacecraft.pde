@@ -11,9 +11,6 @@ class Spacecraft extends GravityObject {
     }
 
     void draw() {
-        move();
-        // println(vel, pos[0]);
-
         fill(#00FF00);
         circle(pos[0].x, pos[0].y, 2e5);
     }
