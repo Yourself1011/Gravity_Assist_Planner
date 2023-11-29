@@ -1,17 +1,16 @@
 class Planet {
 // FIELDS
   PVector pos;
-  float mass, radius ;
-  float xVel, yVel;
+  float pMass, radius ;
+  float xVel;
 
   
-  Planet(int xP, int yP, float m, float r, float xV, float yV ) {
+  Planet(int xP, int yP, float m, float r, float xV ) {
     this.pos = new PVector (xP, yP);
-    this.mass = m;
+    this.pMass = m;
     //this.col = c;
     this.radius = r;
     this.xVel = xV;
-    this.yVel = yV;
       
     }
 
