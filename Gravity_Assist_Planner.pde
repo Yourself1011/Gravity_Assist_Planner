@@ -3,7 +3,7 @@ import g4p_controls.*;
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
 Spacecraft spacecraft = new Spacecraft();
 Star [] stars = new Star [1000];
-float t = 0.5;
+float t = 1.0/1000;
 int prevFrame, frameLength;
 float[] mults = {0.5, 0.5, 1, 1}; // multipliers for rk4
 
@@ -15,7 +15,7 @@ void setup() {
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
-    spacecraft.set(new PVector(6795600, 0), new PVector(29800, 26700/3.6), 450000);
+    spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
     camera.translate(-width/2, -height/2);
     prevFrame = millis();
 }
