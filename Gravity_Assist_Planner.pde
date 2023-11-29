@@ -15,9 +15,9 @@ final float G = 6.6743e-11;
 void setup() {
     fullScreen();
     photo = loadImage("spacey.png");
-    running = false;
+    running = true;
     instruct = false;
-    // createGUI();
+    createGUI();
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
@@ -73,6 +73,7 @@ void draw() {
     popMatrix();
 
     drawScale();
+  }
 }
 
 void drawScale() {
