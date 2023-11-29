@@ -4,7 +4,7 @@ Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
 Spacecraft spacecraft = new Spacecraft();
 Star [] stars = new Star [1000];
 float t = 0.5;
-int prevFrame = 0, frameLength;
+int prevFrame, frameLength;
 float[] mults = {0.5, 0.5, 1, 1}; // multipliers for rk4
 
 final float G = 6.6743e-11;
@@ -15,7 +15,8 @@ void setup() {
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
-    spacecraft.reset(new PVector(7378100, 0), new PVector(28800, 8000));
+    spacecraft.set(new PVector(6795600, 0), new PVector(29800, 26700/3.6), 450000);
+    camera.translate(-width/2, -height/2);
     prevFrame = millis();
 }
 

@@ -8,6 +8,7 @@ class Star{
    location = new PVector(random(-1e8,1e8), random(-1e8,1e8));
    s = random(5e4, 1e5);
    velocity = planet.vel.copy().add(random(-500, -1000), 0);
+  //  velocity = new PVector(0, 0);
  }
  
  void draw(){

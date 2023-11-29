@@ -1,13 +1,13 @@
 class Spacecraft extends GravityObject {
-    // PVector force = new PVector(0, 0), vel = new PVector(0, 0), pos = new PVector(0, 0);
 
     Spacecraft() {
-        super(new PVector(0, 0), new PVector(0, 0), new PVector(0, 0), 6500);
+        super(new PVector(0, 0), new PVector(0, 0), new PVector(0, 0), 0);
     }
 
-    void reset(PVector pos, PVector vel) {
+    void set(PVector pos, PVector vel, float m) {
         this.pos[0] = pos;
         this.vel = vel;
+        this.mass = m;
     }
 
     void draw() {
