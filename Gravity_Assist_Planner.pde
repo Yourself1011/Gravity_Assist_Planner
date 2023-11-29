@@ -71,21 +71,34 @@ void draw() {
     spacecraft.draw();
 
     popMatrix();
-  }
+
+    drawScale();
 }
 
+void drawScale() {
+    float count = 85/camera.zoom;
+    String unit = "m";
+    if (count > 1000) {
+        count /= 1000;
+        unit = "km";
+    }
 
-//Keys for Intro Screen
-void keyPressed(){
-  if(keyCode == ENTER){
-    running = true;
-  }
-  
-  if(keyCode == RIGHT){
-    instruct = true;
-  }
-  
-  if(keyCode == LEFT){
-    instruct = false;
-  }
+    float power = pow(10, ceil(log(count) / log(10))) / 2;
+    count = ceil(count / power) * power;
+    float metres = unit.equals("m") ? count : count * 1000;
+    float len = metres * camera.zoom;
+
+    fill(255);
+    stroke(255);
+    textSize(24);
+    textAlign(CENTER, BOTTOM);
+    line(20, height - 50, 20 + len, height - 50);
+    text("0" + unit, 20, height - 10);
+    line(20, height - 55, 20, height - 45);
+    text(count + unit, 20 + len, height - 10);
+    line(20 + len, height - 55, 20 + len, height - 45);
+
+    for (float x = len / 5; x < len; x += len / 5) {
+        line(20 + x, height - 53, 20 + x, height - 47);
+    }
 }
