@@ -19,7 +19,7 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:spMass:2668
 } //_CODE_:spMass:266849:
 
 public void slider2_change1(GSlider source, GEvent event) { //_CODE_:planetMass:539922:
-  planet.pMass = planetMass.getValueF()*(pow(10,24));
+  planet.mass = planetMass.getValueF()*(pow(10,24));
 } //_CODE_:planetMass:539922:
 
 public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:253720:
@@ -37,7 +37,7 @@ public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241
 } //_CODE_:pPreset:241108:
 
 public void slider1_change2(GSlider source, GEvent event) { //_CODE_:pOrbitSpeed:346573:
-  planet.xVel = pOrbitSpeed.getValueF();
+  planet.vel.x = pOrbitSpeed.getValueF();
 } //_CODE_:pOrbitSpeed:346573:
 
 public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSpeed:483261:
@@ -45,7 +45,7 @@ public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSp
 } //_CODE_:spInitialSpeed:483261:
 
 public void slider1_change4(GSlider source, GEvent event) { //_CODE_:pInitialPos:965079:
-  spacecraft.pos.x = pInitialPos.getValueF();
+  spacecraft.pos[0].x = pInitialPos.getValueF();
 } //_CODE_:pInitialPos:965079:
 
 public void slider2_change2(GSlider source, GEvent event) { //_CODE_:pInitialAngle:697099:
