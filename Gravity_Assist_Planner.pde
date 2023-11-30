@@ -4,9 +4,9 @@ boolean running;
 boolean instruct;
 
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
-Spacecraft spacecraft = new Spacecraft();
+Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
-float t = 1.0/1000;
+float t = 1000.0/1000;
 int prevFrame, frameLength;
 float[] mults = {0.5, 0.5, 1, 1}; // multipliers for rk4
 
@@ -17,11 +17,12 @@ void setup() {
     photo = loadImage("spacey.png");
     running = true;
     instruct = false;
-    createGUI();
+    // createGUI();
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
     spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
+    spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
     camera.translate(-width/2, -height/2);
     prevFrame = millis();
 }
@@ -49,8 +50,10 @@ void draw() {
       planet.kn(i, spacecraft, mults[i]);
       spacecraft.kn(i, planet, mults[i]);
     }
+    // spacecraft2.kn(0, planet, 1);
     planet.move();
     spacecraft.move();
+    // spacecraft2.eulerIntegrate();
 
     camera.pos.add(PVector.mult(planet.vel, t*frameLength));
 
@@ -69,6 +72,7 @@ void draw() {
     planet.drawPlanet();
 
     spacecraft.draw();
+    // spacecraft2.draw();
 
     popMatrix();
 
