@@ -13,7 +13,7 @@ void mouseWheel(MouseEvent e) {
         camera.zoom /= 1.1;
         mouseVector.mult(-0.1);
     } else {
-        mouseVector.setMag(0);
+        return;
     }
 
     camera.translate(mouseVector.x, mouseVector.y);

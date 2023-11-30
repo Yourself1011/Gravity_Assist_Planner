@@ -15,7 +15,7 @@ final float G = 6.6743e-11;
 void setup() {
     fullScreen();
     photo = loadImage("spacey.png");
-    running = false;
+    running = true;
     instruct = false;
     createGUI();
     
@@ -113,7 +113,6 @@ void draw() {
     drawScale();
   }
 }
-
 
 void drawScale() {
     float count = 85/camera.zoom;
