@@ -12,6 +12,7 @@ class Star{
  
  void draw(){
    fill(255);
+   noStroke();
    circle(location.x,location.y,s);
  }
  

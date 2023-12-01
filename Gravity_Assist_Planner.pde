@@ -1,7 +1,10 @@
 import g4p_controls.*;
 PImage photo;
+<<<<<<< Updated upstream
 boolean running;
 boolean instruct;
+=======
+>>>>>>> Stashed changes
 
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
 Spacecraft spacecraft = new Spacecraft();
@@ -15,8 +18,11 @@ final float G = 6.6743e-11;
 void setup() {
     fullScreen();
     photo = loadImage("spacey.png");
+<<<<<<< Updated upstream
     running = true;
     instruct = false;
+=======
+>>>>>>> Stashed changes
     createGUI();
     
     //label1.setVisible(false);
@@ -109,6 +115,7 @@ void draw() {
     spacecraft.draw();
 
     popMatrix();
+<<<<<<< Updated upstream
 
     drawScale();
   }
@@ -154,4 +161,8 @@ void keyPressed(){
   if(keyCode == LEFT){
     instruct = false;
   }
+=======
+    
+    image(photo,width/2, height/2);
+>>>>>>> Stashed changes
 }
