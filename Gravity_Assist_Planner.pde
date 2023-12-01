@@ -3,6 +3,7 @@ PImage photo;
 boolean running;
 boolean instruct;
 
+
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
@@ -15,9 +16,15 @@ final float G = 6.6743e-11;
 void setup() {
     fullScreen();
     photo = loadImage("spacey.png");
-    running = true;
+    running = false;
     instruct = false;
+    createGUI();
+    
+    //label1.setVisible(false);
+    
+
     // createGUI();
+
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
@@ -31,18 +38,53 @@ void draw() {
   //Intro Screen for now
   if(running == false){
     background(0);
+    
+    //stars 
+    for(int i = 0; i < 1000; i++){
+      circle(random(0,width), random(0, height), random(0, 2));
+    }
+       
+    //setting the GUI not visible 
+    spMass.setVisible(false);
+    planetMass.setVisible(false);
+    spPreset.setVisible(false);
+    pPreset.setVisible(false);
+    spInitialSpeed.setVisible(false);
+    pOrbitSpeed.setVisible(false);
+    pInitialPos.setVisible(false);
+    pInitialAngle.setVisible(false);
+    Demo1.setVisible(false);
+    demo2.setVisible(false);
+    demo3.setVisible(false);
+    demo4.setVisible(false);
     image(photo, width/2, height/2);
-    text("Press Enter to Start", 200, 600);  
+    text("Press Enter to Start", 900, 400);  
+    textSize(20);
     text("Press the right arrow to read instructions", 400, 600);
     
     if(instruct == true){
       background(0);
-      text("Blah blah", 200, 600);
+      text("Gravity Assist: ", 200, 600);
       text("Press the left arrow to go back", 400, 600);
+      
     }
   }
   
-  else{
+    else{
+    //making GUI visible
+    spMass.setVisible(true);
+    planetMass.setVisible(true);
+    spPreset.setVisible(true);
+    pPreset.setVisible(true);
+    spInitialSpeed.setVisible(true);
+    pOrbitSpeed.setVisible(true);
+    pInitialPos.setVisible(true);
+    pInitialAngle.setVisible(true);
+    Demo1.setVisible(true);
+    demo2.setVisible(true);
+    demo3.setVisible(true);
+    demo4.setVisible(true);
+                 
     frameLength = millis() - prevFrame;
     prevFrame = millis();
 
@@ -75,6 +117,7 @@ void draw() {
     // spacecraft2.draw();
 
     popMatrix();
+
 
     drawScale();
   }
@@ -122,4 +165,22 @@ void drawScale() {
     for (float x = len / 5; x < len; x += len / 5) {
         line(20 + x, height - 53, 20 + x, height - 47);
     }
+}
+
+void keyPressed(){
+  if(keyCode == ENTER){
+    running = true;
+  }
+  
+  if(keyCode == RIGHT){
+    instruct = true;
+  }
+  
+  if(keyCode == LEFT){
+    instruct = false;
+  }
+
+    
+    image(photo,width/2, height/2);
+
 }
