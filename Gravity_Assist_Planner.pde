@@ -3,7 +3,7 @@ import g4p_controls.*;
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
 Spacecraft spacecraft = new Spacecraft();
 Star [] stars = new Star [1000];
-float t = 1.0/1000;
+float t = 100.0/1000;
 int prevFrame, frameLength;
 float[] mults = {0.5, 0.5, 1, 1}; // multipliers for rk4
 
@@ -50,4 +50,20 @@ void draw() {
     spacecraft.draw();
 
     popMatrix();
+}
+
+void getspValues(){
+  spacecraft.mass = spMass.getValueF();
+  spacecraft.vel.setMag( spInitialSpeed.getValueF());
+  spacecraft.pos[0].x = spInitialPos.getValueF();
+  
+  
+}
+
+void setSPValues(int sPmass, int initialSpeed, int initialPos, int initialAngle ){
+  spMass.setValue(sPmass);
+  spInitialSpeed.setValue(initialSpeed);
+  spInitialPos.setValue(initialPos);
+  spInitialAngle.setValue(initialAngle);
+  
 }
