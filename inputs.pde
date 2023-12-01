@@ -21,3 +21,22 @@ void mouseWheel(MouseEvent e) {
 
     // cameraZoom = clamp(cameraZoom, 0.1, 100);
 }
+
+void keyPressed(){
+  if(keyCode == ENTER){
+    running = true;
+    prevFrame = millis();
+  }
+  
+  if(keyCode == RIGHT){
+    instruct = true;
+  }
+  
+  if(keyCode == LEFT){
+    instruct = false;
+  }
+
+    
+    image(photo,width/2, height/2);
+
+}

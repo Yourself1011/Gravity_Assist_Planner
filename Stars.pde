@@ -21,8 +21,8 @@ class Star{
  }
  
  void update(){
-   velocity.add(PVector.mult(accelerate, t*frameLength));
-   location.add(PVector.mult(velocity, t*frameLength));   
+   velocity.add(PVector.mult(accelerate, dt));
+   location.add(PVector.mult(velocity, dt));   
  }
  //move x position of stars so it doesn't go off screen
 }
