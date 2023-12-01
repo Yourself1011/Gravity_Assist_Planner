@@ -1,8 +1,10 @@
 class Spacecraft extends GravityObject {
     float radius;
+    color col;
 
-    Spacecraft() {
+    Spacecraft(color col) {
         super(new PVector(0, 0), new PVector(0, 0), new PVector(0, 0), 0);
+        this.col = col;
     }
 
     void set(PVector pos, PVector vel, float m, float r) {
@@ -14,7 +16,7 @@ class Spacecraft extends GravityObject {
 
     void draw() {
         if (10/camera.zoom > radius) {
-            fill(#00FF00);
+            fill(col);
             circle(pos[0].x, pos[0].y, 10/camera.zoom);
         } else {
             // image here

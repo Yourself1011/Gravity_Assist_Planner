@@ -48,6 +48,7 @@ public void slider1_change4(GSlider source, GEvent event) { //_CODE_:spInitialPo
   spacecraft.pos[0].x = spInitialPos.getValueF();
 } //_CODE_:spInitialPos:965079:
 
+
 public void slider2_change2(GSlider source, GEvent event) { //_CODE_:spInitialAngle:697099:
   println("pInitialAngle - GSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:spInitialAngle:697099:

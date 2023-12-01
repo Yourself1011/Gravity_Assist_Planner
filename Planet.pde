@@ -11,6 +11,6 @@ class Planet extends GravityObject {
 
   void drawPlanet() {
     fill(255);
-    circle(this.pos[0].x, this.pos[0].y, this.radius);
+    circle(this.pos[0].x, this.pos[0].y, this.radius * 2);
     }
 }
