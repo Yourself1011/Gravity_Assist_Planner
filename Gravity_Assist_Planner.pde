@@ -15,9 +15,9 @@ final float G = 6.6743e-11;
 void setup() {
     fullScreen();
     photo = loadImage("spacey.png");
-    running = true;
+    running = false;
     instruct = false;
-    // createGUI();
+    createGUI();
     
     //label1.setVisible(false);
 
@@ -43,18 +43,18 @@ void draw() {
     }
        
     //setting the GUI not visible 
-    // spMass.setVisible(false);
-    // planetMass.setVisible(false);
-    // spPreset.setVisible(false);
-    // pPreset.setVisible(false);
-    // spInitialSpeed.setVisible(false);
-    // pOrbitSpeed.setVisible(false);
-    // spInitialPos.setVisible(false);
-    // spInitialAngle.setVisible(false);
-    // Demo1.setVisible(false);
-    // demo2.setVisible(false);
-    // demo3.setVisible(false);
-    // demo4.setVisible(false);
+    spMass.setVisible(false);
+    planetMass.setVisible(false);
+    spPreset.setVisible(false);
+    pPreset.setVisible(false);
+    spInitialSpeed.setVisible(false);
+    pOrbitSpeed.setVisible(false);
+    spInitialPos.setVisible(false);
+    spInitialAngle.setVisible(false);
+    Demo1.setVisible(false);
+    demo2.setVisible(false);
+    demo3.setVisible(false);
+    demo4.setVisible(false);
     image(photo, width/2, height/2);
     text("Press Enter to Start", 900, 400);  
     textSize(20);
@@ -69,19 +69,6 @@ void draw() {
   }
   
     else{
-    //making GUI visible
-    // spMass.setVisible(true);
-    // planetMass.setVisible(true);
-    // spPreset.setVisible(true);
-    // pPreset.setVisible(true);
-    // spInitialSpeed.setVisible(true);
-    // pOrbitSpeed.setVisible(true);
-    // spInitialPos.setVisible(true);
-    // spInitialAngle.setVisible(true);
-    // Demo1.setVisible(true);
-    // demo2.setVisible(true);
-    // demo3.setVisible(true);
-    // demo4.setVisible(true);
        
     background(0);
     frameLength = max(millis() - prevFrame, 100);
@@ -94,10 +81,10 @@ void draw() {
     //   planet.kn(i, spacecraft, mults[i]);
     //   spacecraft.kn(i, planet, mults[i]);
     // }
-    spacecraft2.kn(0, planet, 1);
+    // spacecraft2.kn(0, planet, 1);
     // planet.move();
     // spacecraft.move();
-    spacecraft2.eulerIntegrate();
+    // spacecraft2.eulerIntegrate();
     // planet.velVerlet(spacecraft);
     // spacecraft.velVerlet(planet);
     planet.leapFrog(spacecraft);
@@ -119,7 +106,7 @@ void draw() {
     planet.drawPlanet();
 
     spacecraft.draw();
-    spacecraft2.draw();
+    // spacecraft2.draw();
 
     popMatrix();
 
