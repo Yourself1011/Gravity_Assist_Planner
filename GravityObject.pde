@@ -39,4 +39,10 @@ class GravityObject {
 
         pos[0].add(PVector.mult(vel, t*frameLength));
     }
+
+    void eulerIntegrate() {
+        vel = kVel[0].copy();
+
+        pos[0].add(PVector.mult(vel, t*frameLength));
+    }
 }
