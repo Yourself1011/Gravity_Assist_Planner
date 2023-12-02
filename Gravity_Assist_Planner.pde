@@ -71,11 +71,10 @@ void draw() {
     else{
        
     background(0);
-    frameLength = max(millis() - prevFrame, 100);
+    frameLength = min(millis() - prevFrame, 100);
     prevFrame = millis();
     prevDt = dt;
     dt = frameLength * t;
-    // println(planet.pos[0], planet.vel);
 
     // for (int i = 0; i < 4; ++i) {
     //   planet.kn(i, spacecraft, mults[i]);
@@ -112,6 +111,7 @@ void draw() {
 
 
     drawScale();
+    fill(255);
   }
 }
 
