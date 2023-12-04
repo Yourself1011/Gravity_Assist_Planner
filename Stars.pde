@@ -2,6 +2,7 @@ class Star{
   float x;
   float y;
   float s;
+  int edge = 50;
   PVector velocity, accelerate, location;
 
  Star(){
@@ -22,7 +23,11 @@ class Star{
  
  void update(){
    velocity.add(PVector.mult(accelerate, t*frameLength));
-   location.add(PVector.mult(velocity, t*frameLength));   
+   location.add(PVector.mult(velocity, t*frameLength));  
+  
+   //if star location is less than 0, it'll reset it's position
+   if(location.x < 0){
+     location.x = width;//+edge;
+   }
  }
- //move x position of stars so it doesn't go off screen
 }

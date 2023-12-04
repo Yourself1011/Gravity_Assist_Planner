@@ -19,11 +19,6 @@ void setup() {
     running = false;
     instruct = false;
     createGUI();
-    
-    //label1.setVisible(false);
-    
-
-    // createGUI();
 
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
@@ -35,13 +30,13 @@ void setup() {
 }
 
 void draw() {
-  //Intro Screen for now
+  //Intro Screen 
   if(running == false){
     background(0);
     
     //stars 
     for(int i = 0; i < 1000; i++){
-      circle(random(0,width), random(0, height), random(0, 2));
+       circle(random(0,width), random(0, height), random(0, 3));
     }
        
     //setting the GUI not visible 
@@ -57,16 +52,26 @@ void draw() {
     demo2.setVisible(false);
     demo3.setVisible(false);
     demo4.setVisible(false);
+    textSize(35);
+    textAlign(CENTER);
     image(photo, width/2, height/2);
-    text("Press Enter to Start", 900, 400);  
-    textSize(20);
-    text("Press the right arrow to read instructions", 400, 600);
+    imageMode(CENTER);
+    text("G.A.P: Gravity Assist Planner", width/2, height/1.6);
+    
+    textSize(25);
+    text("Press Enter to Start", width/2, height/1.15);  
+    text("Press the right arrow to read instructions", width/2, height/1.1);
     
     if(instruct == true){
       background(0);
-      text("Gravity Assist: ", 200, 600);
-      text("Press the left arrow to go back", 400, 600);
-      
+      textSize(35);
+      textAlign(CENTER);
+      text("How to use the Gravity Assist Planner", width/2, height/5);
+      textSize(30);
+      text("Adjust the sliders to plan out your desired gravity assist route.", width/2, height/3);
+      text("Use the demos to get inspired!", width/2, height/2.5);
+      textSize(25);
+      text("Press the left arrow to go back", width/2, height/2);
     }
   }
   
@@ -151,6 +156,7 @@ void drawScale() {
     }
 }
 
+//keys used for intro
 void keyPressed(){
   if(keyCode == ENTER){
     running = true;
@@ -163,8 +169,5 @@ void keyPressed(){
   if(keyCode == LEFT){
     instruct = false;
   }
-
-    
-    image(photo,width/2, height/2);
 
 }
