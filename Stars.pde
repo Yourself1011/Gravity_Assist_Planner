@@ -29,5 +29,9 @@ class Star{
    if(location.x < 0){
      location.x = width;//+edge;
    }
+   
+   velocity.add(PVector.mult(accelerate, dt));
+   location.add(PVector.mult(velocity, dt));   
+
  }
 }

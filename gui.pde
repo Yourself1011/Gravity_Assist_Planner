@@ -14,7 +14,7 @@
  * =========================================================
  */
 
-public void slider1_change1(GSlider source, GEvent event) { //_CODE_:spMass:266849:
+public void massChange_slidder(GSlider source, GEvent event) { //_CODE_:spMass:266849:
   spacecraft.mass = spMass.getValueF();
 } //_CODE_:spMass:266849:
 
@@ -41,16 +41,17 @@ public void slider1_change2(GSlider source, GEvent event) { //_CODE_:pOrbitSpeed
 } //_CODE_:pOrbitSpeed:346573:
 
 public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSpeed:483261:
-  println("spInitialSpeed - GSlider >> GEvent." + event + " @ " + millis());
+  spacecraft.vel.setMag(spInitialSpeed.getValueF());
 } //_CODE_:spInitialSpeed:483261:
 
-public void slider1_change4(GSlider source, GEvent event) { //_CODE_:pInitialPos:965079:
-  spacecraft.pos[0].x = pInitialPos.getValueF();
-} //_CODE_:pInitialPos:965079:
+public void slider1_change4(GSlider source, GEvent event) { //_CODE_:spInitialPos:965079:
+  spacecraft.pos[0].x = spInitialPos.getValueF();
+} //_CODE_:spInitialPos:965079:
 
-public void slider2_change2(GSlider source, GEvent event) { //_CODE_:pInitialAngle:697099:
+
+public void slider2_change2(GSlider source, GEvent event) { //_CODE_:spInitialAngle:697099:
   println("pInitialAngle - GSlider >> GEvent." + event + " @ " + millis());
-} //_CODE_:pInitialAngle:697099:
+} //_CODE_:spInitialAngle:697099:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:Demo1:443366:
   println("Demo1 - GButton >> GEvent." + event + " @ " + millis());
@@ -68,10 +69,6 @@ public void button4_click1(GButton source, GEvent event) { //_CODE_:demo4:484823
   println("demo4 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:demo4:484823:
 
-synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:window1:823739:
-  appc.background(230);
-} //_CODE_:window1:823739:
-
 
 
 // Create all the GUI controls. 
@@ -85,7 +82,7 @@ public void createGUI(){
   spMass.setLimits(6500.0, 1000.0, 10000.0);
   spMass.setNumberFormat(G4P.DECIMAL, 2);
   spMass.setOpaque(false);
-  spMass.addEventHandler(this, "slider1_change1");
+  spMass.addEventHandler(this, "massChange_slidder");
   planetMass = new GSlider(this, 243, 38, 161, 40, 10.0);
   planetMass.setLimits(5.9, 1.0, 10.0);
   planetMass.setNumberFormat(G4P.DECIMAL, 2);
@@ -108,16 +105,16 @@ public void createGUI(){
   spInitialSpeed.setNumberFormat(G4P.DECIMAL, 2);
   spInitialSpeed.setOpaque(false);
   spInitialSpeed.addEventHandler(this, "slider1_change3");
-  pInitialPos = new GSlider(this, 23, 121, 149, 40, 10.0);
-  pInitialPos.setLimits(0.5, 0.0, 1.0);
-  pInitialPos.setNumberFormat(G4P.DECIMAL, 2);
-  pInitialPos.setOpaque(false);
-  pInitialPos.addEventHandler(this, "slider1_change4");
-  pInitialAngle = new GSlider(this, 26, 163, 147, 40, 10.0);
-  pInitialAngle.setLimits(0.5, 0.0, 1.0);
-  pInitialAngle.setNumberFormat(G4P.DECIMAL, 2);
-  pInitialAngle.setOpaque(false);
-  pInitialAngle.addEventHandler(this, "slider2_change2");
+  spInitialPos = new GSlider(this, 23, 121, 149, 40, 10.0);
+  spInitialPos.setLimits(0.5, 0.0, 1.0);
+  spInitialPos.setNumberFormat(G4P.DECIMAL, 2);
+  spInitialPos.setOpaque(false);
+  spInitialPos.addEventHandler(this, "slider1_change4");
+  spInitialAngle = new GSlider(this, 26, 163, 147, 40, 10.0);
+  spInitialAngle.setLimits(0.5, 0.0, 1.0);
+  spInitialAngle.setNumberFormat(G4P.DECIMAL, 2);
+  spInitialAngle.setOpaque(false);
+  spInitialAngle.addEventHandler(this, "slider2_change2");
   Demo1 = new GButton(this, 214, 196, 80, 30);
   Demo1.setText("Demo 1");
   Demo1.addEventHandler(this, "button1_click1");
@@ -130,11 +127,6 @@ public void createGUI(){
   demo4 = new GButton(this, 334, 242, 80, 30);
   demo4.setText("Demo 4");
   demo4.addEventHandler(this, "button4_click1");
-  window1 = GWindow.getWindow(this, "Window title", 0, 0, 240, 120, JAVA2D);
-  window1.noLoop();
-  window1.setActionOnClose(G4P.KEEP_OPEN);
-  window1.addDrawHandler(this, "win_draw1");
-  window1.loop();
 }
 
 // Variable declarations 
@@ -146,10 +138,9 @@ GDropList spPreset;
 GDropList pPreset; 
 GSlider pOrbitSpeed; 
 GSlider spInitialSpeed; 
-GSlider pInitialPos; 
-GSlider pInitialAngle; 
+GSlider spInitialPos; 
+GSlider spInitialAngle; 
 GButton Demo1; 
 GButton demo2; 
 GButton demo3; 
 GButton demo4; 
-GWindow window1;

@@ -21,3 +21,35 @@ void mouseWheel(MouseEvent e) {
 
     // cameraZoom = clamp(cameraZoom, 0.1, 100);
 }
+
+void keyPressed(){
+  if(keyCode == ENTER){
+    running = true;
+    prevFrame = millis();
+    //making GUI visible
+    spMass.setVisible(true);
+    planetMass.setVisible(true);
+    spPreset.setVisible(true);
+    pPreset.setVisible(true);
+    spInitialSpeed.setVisible(true);
+    pOrbitSpeed.setVisible(true);
+    spInitialPos.setVisible(true);
+    spInitialAngle.setVisible(true);
+    Demo1.setVisible(true);
+    demo2.setVisible(true);
+    demo3.setVisible(true);
+    demo4.setVisible(true);
+  }
+  
+  if(keyCode == RIGHT){
+    instruct = true;
+  }
+  
+  if(keyCode == LEFT){
+    instruct = false;
+  }
+
+    
+    image(photo,width/2, height/2);
+
+}

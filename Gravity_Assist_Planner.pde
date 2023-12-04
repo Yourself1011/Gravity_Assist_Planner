@@ -3,13 +3,12 @@ PImage photo;
 boolean running;
 boolean instruct;
 
-
-Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
+Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
-float t = 1000.0/1000;
+float t = 200.0/1000, dt = 1, prevDt = 1;
 int prevFrame, frameLength;
-float[] mults = {0.5, 0.5, 1, 1}; // multipliers for rk4
+float[] mults = {1, 0.5, 0.5, 1}; // multipliers for rk4
 
 final float G = 6.6743e-11;
 
@@ -25,6 +24,8 @@ void setup() {
     }
     spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
     spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
+    // spacecraft.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100); // moon
+    // spacecraft2.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100);
     camera.translate(-width/2, -height/2);
     prevFrame = millis();
 }
@@ -46,8 +47,8 @@ void draw() {
     pPreset.setVisible(false);
     spInitialSpeed.setVisible(false);
     pOrbitSpeed.setVisible(false);
-    pInitialPos.setVisible(false);
-    pInitialAngle.setVisible(false);
+    spInitialPos.setVisible(false);
+    spInitialAngle.setVisible(false);
     Demo1.setVisible(false);
     demo2.setVisible(false);
     demo3.setVisible(false);
@@ -76,36 +77,29 @@ void draw() {
   }
   
     else{
-    //making GUI visible
-    spMass.setVisible(true);
-    planetMass.setVisible(true);
-    spPreset.setVisible(true);
-    pPreset.setVisible(true);
-    spInitialSpeed.setVisible(true);
-    pOrbitSpeed.setVisible(true);
-    pInitialPos.setVisible(true);
-    pInitialAngle.setVisible(true);
-    Demo1.setVisible(true);
-    demo2.setVisible(true);
-    demo3.setVisible(true);
-    demo4.setVisible(true);
-                 
-    frameLength = millis() - prevFrame;
+       
+    background(0);
+    frameLength = min(millis() - prevFrame, 100);
     prevFrame = millis();
+    prevDt = dt;
+    dt = frameLength * t;
 
-    for (int i = 0; i < 4; ++i) {
-      planet.kn(i, spacecraft, mults[i]);
-      spacecraft.kn(i, planet, mults[i]);
-    }
+    // for (int i = 0; i < 4; ++i) {
+    //   planet.kn(i, spacecraft, mults[i]);
+    //   spacecraft.kn(i, planet, mults[i]);
+    // }
     // spacecraft2.kn(0, planet, 1);
-    planet.move();
-    spacecraft.move();
+    // planet.move();
+    // spacecraft.move();
     // spacecraft2.eulerIntegrate();
+    // planet.velVerlet(spacecraft);
+    // spacecraft.velVerlet(planet);
+    planet.leapFrog(spacecraft);
+    spacecraft.leapFrog(planet);
 
-    camera.pos.add(PVector.mult(planet.vel, t*frameLength));
+    camera.pos.add(PVector.mult(planet.vel, dt));
 
     ellipseMode(CENTER);
-    background(0);
     //drawing stars
     pushMatrix();
     scale(camera.zoom);
@@ -125,7 +119,24 @@ void draw() {
 
 
     drawScale();
+    fill(255);
   }
+}
+
+void getspValues(){
+  spacecraft.mass = spMass.getValueF();
+  spacecraft.vel.setMag( spInitialSpeed.getValueF());
+  spacecraft.pos[0].x = spInitialPos.getValueF();
+  
+  
+}
+
+void setSPValues(int sPmass, int initialSpeed, int initialPos, int initialAngle ){
+  spMass.setValue(sPmass);
+  spInitialSpeed.setValue(initialSpeed);
+  spInitialPos.setValue(initialPos);
+  spInitialAngle.setValue(initialAngle);
+  
 }
 
 void drawScale() {
@@ -154,6 +165,7 @@ void drawScale() {
     for (float x = len / 5; x < len; x += len / 5) {
         line(20 + x, height - 53, 20 + x, height - 47);
     }
+
 }
 
 //keys used for intro
@@ -169,5 +181,7 @@ void keyPressed(){
   if(keyCode == LEFT){
     instruct = false;
   }
+
+}
 
 }
