@@ -20,8 +20,8 @@ public void massChange_slidder(GSlider source, GEvent event) { //_CODE_:spMass:2
 } //_CODE_:spMass:266849:
 
 public void slider2_change1(GSlider source, GEvent event) { //_CODE_:planetMass:539922:
-  planet.mass = planetMass.getValueF()*(pow(10,24));
   clear();
+  planet.mass = pow(10, planetMass.getValueF());
 } //_CODE_:planetMass:539922:
 
 public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:253720:
@@ -131,11 +131,12 @@ public void createGUI(){
   spMass.setNumberFormat(G4P.DECIMAL, 2);
   spMass.setOpaque(false);
   spMass.addEventHandler(this, "massChange_slidder");
-  planetMass = new GSlider(this, 243, 38, 161, 40, 10.0);
-  planetMass.setLimits(5.9, 1.0, 10.0);
+  planetMass = new LogSlider(this, 243, 38, 161, 40, 10.0);
+  planetMass.setLimits(log(5.9e24)/log(10), 1.0, 25.0);
   planetMass.setNumberFormat(G4P.DECIMAL, 2);
   planetMass.setOpaque(false);
   planetMass.addEventHandler(this, "slider2_change1");
+  planetMass.setShowValue(true);
   togGroup1 = new GToggleGroup();
   spPreset = new GDropList(this, 44, 221, 103, 80, 3, 10);
   spPreset.setItems(loadStrings("list_253720"), 0);

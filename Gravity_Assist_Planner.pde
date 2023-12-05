@@ -6,7 +6,7 @@ boolean instruct;
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
-float t = 200.0/1000, dt = 1, prevDt = 1;
+float t = 10000.0/1000, dt = 1, prevDt = 1;
 int prevFrame, frameLength;
 float[] mults = {1, 0.5, 0.5, 1}; // multipliers for rk4
 
@@ -22,9 +22,9 @@ void setup() {
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
-    spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
-    spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
-    // spacecraft.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100); // moon
+    // spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
+    // spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
+    spacecraft.set(new PVector(planet.radius + 384400000, 0), new PVector(29800, 1022), 7.342e22, 1738100); // moon
     // spacecraft2.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100);
     camera.translate(-width/2, -height/2);
     prevFrame = millis();

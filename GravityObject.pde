@@ -21,10 +21,9 @@ class GravityObject {
         this.mass = mass;
     }
 
-    void kn(int n, GravityObject target, float mult) { // find k of n in Runge-Kutta 4
+    void kn(int n, GravityObject target, float mult) { // find k of n in Runge-Kutta 4 (was not effective for this)
         if (n > 0) {
             pos[n] = PVector.add(pos[0], PVector.mult(kVel[n - 1], dt*mult));
-            // println(n, pos[n], kVel[n - 1]);
         }
         
         force.set(0, 0);
@@ -32,18 +31,11 @@ class GravityObject {
             PVector.sub(target.pos[n], pos[n])
             .setMag(G*mass*target.mass/pow(PVector.dist(pos[n], target.pos[n]), 2))
         );
-        // println(G*mass*target.mass/pow(PVector.dist(pos[n], target.pos[n]), 2));
-        // println(pos[n], target.pos[n], pow(PVector.dist(pos[n], target.pos[n]), 2));
-        // println(mass, target.mass, (double) mass*target.mass, pow(PVector.dist(pos[n], target.pos[n]), 2), force, PVector.mult(force, dt/mass));
 
         kVel[n] = PVector.add(n < 1 ? vel : kVel[n-1], force.mult(dt/mass));
-        // stroke(255);
-        // line(pos[n].x, pos[n].y, pos[n].x + kVel[n].x * t * frameLength * 10, pos[n].y + kVel[n].y * t * frameLength * 10);
-        // println(n < 1 ? vel : kVel[n-1], force, kVel[n]);
-        // kVel[n] = PVector.add(vel, force.mult(dt/mass));
     }
 
-    void velVerlet(GravityObject target) {
+    void velVerlet(GravityObject target) { // was not effective either
         force.set(0, 0);
         force.add(
             PVector.sub(target.pos[0], pos[0])
@@ -56,9 +48,7 @@ class GravityObject {
         pos[1] = pos[2];
     }
 
-    void leapFrog(GravityObject target) {
-        // prevForce = force.copy();
-
+    void leapFrog(GravityObject target) { // works fine
         kVel[0] = PVector.add(vel, PVector.mult(force, dt/(mass*2)));
         pos[0].add(PVector.mult(kVel[0], dt));
         
@@ -70,9 +60,8 @@ class GravityObject {
         vel = kVel[0].add(PVector.mult(force, dt/(mass*2)));
     }
 
-    void move() {
+    void move() { // used for rk4
         vel = (PVector.add(kVel[0], PVector.mult(kVel[1], 2)).add(PVector.mult(kVel[2], 2)).add(kVel[3])).div(6);
-        // vel = kVel[3].copy();
 
         pos[0].add(PVector.mult(vel, dt));
     }
