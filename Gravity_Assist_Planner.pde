@@ -3,7 +3,7 @@ PImage photo;
 boolean running;
 boolean instruct;
 
-Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 0);
+Planet planet = new Planet(0, 0, 5.972e24, 6378100, 29800, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
 float t = 1000.0/1000, dt = 1, prevDt = 1;
@@ -24,7 +24,7 @@ void setup() {
     }
     // spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
     // spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
-    spacecraft.set(new PVector(planet.radius + 384400000, 0), new PVector(29800, 1022), 7.342e22, 1738100); // moon
+    spacecraft.set(new PVector(-planet.radius - 384400000, 0), new PVector(29800, -1022), 7.342e22, 1738100); // moon
     // spacecraft2.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100);
     camera.translate(-width/2, -height/2);
     prevFrame = millis();
@@ -122,9 +122,11 @@ void draw() {
 }
 
 void getpValues() {
-  planet.mass = planetMass.getValueF();
-  planet.vel.x = pOrbitSpeed.getValueF();
-  planet.radius = pRadius.getValueF() * 1000;
+  planet.mass = pow(10, planetMass.getValueF());
+  planet.vel.set(pOrbitSpeed.getValueF(), 0);
+  camera.pos.sub(planet.pos[0].x, planet.pos[0].y);
+  planet.pos[0].set(0, 0);
+  planet.radius = pRadius.getValueF() * 1000000;
 }
 
 void setPValues(float pMass, float pVel, float r ) {
@@ -136,10 +138,9 @@ void setPValues(float pMass, float pVel, float r ) {
 
 void getspValues(){
   spacecraft.mass = spMass.getValueF();
+  spacecraft.vel.set(-1, 0).rotate(radians(spInitialAngle.getValueF()));
   spacecraft.vel.setMag( spInitialSpeed.getValueF());
-  spacecraft.pos[0].x = spInitialPos.getValueF();
-  spacecraft.vel.rotate(radians(spInitialAngle.getValueF()));
-  
+  spacecraft.pos[0].set(spInitialPos.getValueF(), 1e7);
 }
 
 void setSPValues(int sPmass, int initialSpeed, int initialPos, int initialAngle ){

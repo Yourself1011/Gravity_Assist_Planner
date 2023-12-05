@@ -1,5 +1,6 @@
 Camera camera = Camera.getInstance();
 
+// A singleton for the camera position and zoom
 static class Camera {
     static Camera instance;
     PVector pos = new PVector(0, 0);
@@ -7,6 +8,7 @@ static class Camera {
 
     private Camera() {}
 
+    // make sure this is only instantiated once
     static Camera getInstance() {
         if (instance == null) {
             instance = new Camera();

@@ -15,12 +15,14 @@
  */
 
 public void massChange_slidder(GSlider source, GEvent event) { //_CODE_:spMass:266849:
-  spacecraft.mass = spMass.getValueF();
+  getpValues();
+  getspValues();
   clear();
 } //_CODE_:spMass:266849:
 
 public void slider2_change1(GSlider source, GEvent event) { //_CODE_:planetMass:539922:
-  planet.mass = pow(10, planetMass.getValueF());
+  getpValues();
+  getspValues();
   clear();
 } //_CODE_:planetMass:539922:
 
@@ -78,44 +80,51 @@ public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241
 } //_CODE_:pPreset:241108:
 
 public void slider1_change2(GSlider source, GEvent event) { //_CODE_:pOrbitSpeed:346573:
-  planet.vel.x = pOrbitSpeed.getValueF();
+  getpValues();
+  getspValues();
   clear();
 } //_CODE_:pOrbitSpeed:346573:
 
 public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSpeed:483261:
-  spacecraft.vel.setMag(spInitialSpeed.getValueF());
+  getpValues();
+  getspValues();
   clear();
 } //_CODE_:spInitialSpeed:483261:
 
 public void slider1_change4(GSlider source, GEvent event) { //_CODE_:spInitialPos:965079:
-  // spacecraft.pos[0].x = spInitialPos.getValueF();
+  getpValues();
   getspValues();
   clear();
 } //_CODE_:spInitialPos:965079:
 
 public void slider2_change2(GSlider source, GEvent event) { //_CODE_:spInitialAngle:697099:
-  // spacecraft.radians(spInitialAngle.getValueF());
+  getpValues();
   getspValues();
 } //_CODE_:spInitialAngle:697099:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:Demo1:443366:
-  println("Demo1 - GButton >> GEvent." + event + " @ " + millis());
+  getpValues();
+  getspValues();
 } //_CODE_:Demo1:443366:
 
 public void button2_click1(GButton source, GEvent event) { //_CODE_:demo2:312806:
-  println("demo2 - GButton >> GEvent." + event + " @ " + millis());
+  getpValues();
+  getspValues();
 } //_CODE_:demo2:312806:
 
 public void button3_click1(GButton source, GEvent event) { //_CODE_:demo3:711930:
-  println("demo3 - GButton >> GEvent." + event + " @ " + millis());
+  getpValues();
+  getspValues();
 } //_CODE_:demo3:711930:
 
 public void button4_click1(GButton source, GEvent event) { //_CODE_:demo4:484823:
-  println("demo4 - GButton >> GEvent." + event + " @ " + millis());
+  getpValues();
+  getspValues();
 } //_CODE_:demo4:484823:
 
 public void slider1_change1(GSlider source, GEvent event) { //_CODE_:pRadius:870883:
-  planet.radius = pRadius.getValueF() * 1e6;
+  getpValues();
+  getspValues();
   clear();
 } //_CODE_:pRadius:870883:
 
@@ -134,7 +143,7 @@ public void createGUI(){
   spMass.setOpaque(false);
   spMass.addEventHandler(this, "massChange_slidder");
   planetMass = new LogSlider(this, 243, 38, 161, 40, 10.0);
-  planetMass.setLimits(log(5.9e24)/log(10), 1.0, 25.0);
+  planetMass.setLimits(log(5.9e24)/log(10), 20.0, 30.0);
   planetMass.setNumberFormat(G4P.DECIMAL, 2);
   planetMass.setOpaque(false);
   planetMass.addEventHandler(this, "slider2_change1");
@@ -147,7 +156,7 @@ public void createGUI(){
   pPreset.setItems(loadStrings("list_241108"), 0);
   pPreset.addEventHandler(this, "pPresetOpened");
   pOrbitSpeed = new GSlider(this, 242, 76, 163, 40, 10.0);
-  pOrbitSpeed.setLimits(0.5, 0.0, 1.0);
+  pOrbitSpeed.setLimits(0.5, 29800.0, 100000.0);
   pOrbitSpeed.setNumberFormat(G4P.DECIMAL, 2);
   pOrbitSpeed.setOpaque(false);
   pOrbitSpeed.addEventHandler(this, "slider1_change2");
@@ -181,7 +190,7 @@ public void createGUI(){
   pRadius = new GSlider(this, 244, 115, 162, 40, 10.0);
   pRadius.setShowValue(true);
   pRadius.setShowLimits(true);
-  pRadius.setLimits(6.3, 2.5, 60.0);
+  pRadius.setLimits(6.3, 6.3, 60.0);
   pRadius.setNumberFormat(G4P.DECIMAL, 2);
   pRadius.setOpaque(false);
   pRadius.addEventHandler(this, "slider1_change1");
