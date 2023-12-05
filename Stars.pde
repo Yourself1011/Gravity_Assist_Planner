@@ -22,12 +22,9 @@ class Star{
  }
  
  void update(){
-   velocity.add(PVector.mult(accelerate, t*frameLength));
-   location.add(PVector.mult(velocity, t*frameLength));  
-  
    //if star location is less than 0, it'll reset it's position
-   if(location.x < 0){
-     location.x = width;//+edge;
+   if(location.x < camera.pos.x - width / camera.zoom){
+     location.x = camera.pos.x + width / camera.zoom;//+edge;
    }
    
    velocity.add(PVector.mult(accelerate, dt));

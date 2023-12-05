@@ -20,8 +20,8 @@ public void massChange_slidder(GSlider source, GEvent event) { //_CODE_:spMass:2
 } //_CODE_:spMass:266849:
 
 public void slider2_change1(GSlider source, GEvent event) { //_CODE_:planetMass:539922:
-  clear();
   planet.mass = pow(10, planetMass.getValueF());
+  clear();
 } //_CODE_:planetMass:539922:
 
 public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:253720:
@@ -88,12 +88,14 @@ public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSp
 } //_CODE_:spInitialSpeed:483261:
 
 public void slider1_change4(GSlider source, GEvent event) { //_CODE_:spInitialPos:965079:
-  spacecraft.pos[0].x = spInitialPos.getValueF();
+  // spacecraft.pos[0].x = spInitialPos.getValueF();
+  getspValues();
   clear();
 } //_CODE_:spInitialPos:965079:
 
 public void slider2_change2(GSlider source, GEvent event) { //_CODE_:spInitialAngle:697099:
-  spacecraft.radians(spInitialAngle.getValueF()));
+  // spacecraft.radians(spInitialAngle.getValueF());
+  getspValues();
 } //_CODE_:spInitialAngle:697099:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:Demo1:443366:

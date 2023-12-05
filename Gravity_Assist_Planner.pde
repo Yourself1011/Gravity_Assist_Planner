@@ -6,7 +6,7 @@ boolean instruct;
 Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
-float t = 10000.0/1000, dt = 1, prevDt = 1;
+float t = 1000.0/1000, dt = 1, prevDt = 1;
 int prevFrame, frameLength;
 float[] mults = {1, 0.5, 0.5, 1}; // multipliers for rk4
 
@@ -31,9 +31,9 @@ void setup() {
 }
 
 void draw() {
+  background(0);
   //Intro Screen 
   if(running == false){
-    background(0);
     
     //stars 
     for(int i = 0; i < 1000; i++){
@@ -77,23 +77,6 @@ void draw() {
   }
   
     else{
-
-    //making GUI visible
-    spMass.setVisible(true);
-    planetMass.setVisible(true);
-    spPreset.setVisible(true);
-    pPreset.setVisible(true);
-    spInitialSpeed.setVisible(true);
-    pOrbitSpeed.setVisible(true);
-    pRadius.setVisible(true);
-    spInitialPos.setVisible(true);
-    spInitialAngle.setVisible(true);
-    Demo1.setVisible(true);
-    demo2.setVisible(true);
-    demo3.setVisible(true);
-    demo4.setVisible(true);
-                 
-
     frameLength = min(millis() - prevFrame, 100);
     prevFrame = millis();
     prevDt = dt;
@@ -193,23 +176,5 @@ void drawScale() {
     for (float x = len / 5; x < len; x += len / 5) {
         line(20 + x, height - 53, 20 + x, height - 47);
     }
-
-}
-
-//keys used for intro
-void keyPressed(){
-  if(keyCode == ENTER){
-    running = true;
-  }
-  
-  if(keyCode == RIGHT){
-    instruct = true;
-  }
-  
-  if(keyCode == LEFT){
-    instruct = false;
-  }
-
-}
 
 }
