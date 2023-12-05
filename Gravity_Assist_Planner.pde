@@ -3,13 +3,12 @@ PImage photo;
 boolean running;
 boolean instruct;
 
-
-Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 1);
+Planet planet = new Planet(100, 200, 5.972e24, 6378100, 29800, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
-float t = 1000.0/1000;
+float t = 200.0/1000, dt = 1, prevDt = 1;
 int prevFrame, frameLength;
-float[] mults = {0.5, 0.5, 1, 1}; // multipliers for rk4
+float[] mults = {1, 0.5, 0.5, 1}; // multipliers for rk4
 
 final float G = 6.6743e-11;
 
@@ -19,29 +18,26 @@ void setup() {
     running = false;
     instruct = false;
     createGUI();
-    
-    //label1.setVisible(false);
-    
-
-    // createGUI();
 
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
     spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
     spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(29800, 27600/3.6), 450000, 100);
+    // spacecraft.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100); // moon
+    // spacecraft2.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100);
     camera.translate(-width/2, -height/2);
     prevFrame = millis();
 }
 
 void draw() {
-  //Intro Screen for now
+  //Intro Screen 
   if(running == false){
     background(0);
     
     //stars 
     for(int i = 0; i < 1000; i++){
-      circle(random(0,width), random(0, height), random(0, 2));
+       circle(random(0,width), random(0, height), random(0, 3));
     }
        
     //setting the GUI not visible 
@@ -57,20 +53,31 @@ void draw() {
     demo2.setVisible(false);
     demo3.setVisible(false);
     demo4.setVisible(false);
+    textSize(35);
+    textAlign(CENTER);
     image(photo, width/2, height/2);
-    text("Press Enter to Start", 900, 400);  
-    textSize(20);
-    text("Press the right arrow to read instructions", 400, 600);
+    imageMode(CENTER);
+    text("G.A.P: Gravity Assist Planner", width/2, height/1.6);
+    
+    textSize(25);
+    text("Press Enter to Start", width/2, height/1.15);  
+    text("Press the right arrow to read instructions", width/2, height/1.1);
     
     if(instruct == true){
       background(0);
-      text("Gravity Assist: ", 200, 600);
-      text("Press the left arrow to go back", 400, 600);
-      
+      textSize(35);
+      textAlign(CENTER);
+      text("How to use the Gravity Assist Planner", width/2, height/5);
+      textSize(30);
+      text("Adjust the sliders to plan out your desired gravity assist route.", width/2, height/3);
+      text("Use the demos to get inspired!", width/2, height/2.5);
+      textSize(25);
+      text("Press the left arrow to go back", width/2, height/2);
     }
   }
   
     else{
+
     //making GUI visible
     spMass.setVisible(true);
     planetMass.setVisible(true);
@@ -86,22 +93,28 @@ void draw() {
     demo3.setVisible(true);
     demo4.setVisible(true);
                  
-    frameLength = millis() - prevFrame;
+
+    frameLength = min(millis() - prevFrame, 100);
     prevFrame = millis();
+    prevDt = dt;
+    dt = frameLength * t;
 
-    for (int i = 0; i < 4; ++i) {
-      planet.kn(i, spacecraft, mults[i]);
-      spacecraft.kn(i, planet, mults[i]);
-    }
+    // for (int i = 0; i < 4; ++i) {
+    //   planet.kn(i, spacecraft, mults[i]);
+    //   spacecraft.kn(i, planet, mults[i]);
+    // }
     // spacecraft2.kn(0, planet, 1);
-    planet.move();
-    spacecraft.move();
+    // planet.move();
+    // spacecraft.move();
     // spacecraft2.eulerIntegrate();
+    // planet.velVerlet(spacecraft);
+    // spacecraft.velVerlet(planet);
+    planet.leapFrog(spacecraft);
+    spacecraft.leapFrog(planet);
 
-    camera.pos.add(PVector.mult(planet.vel, t*frameLength));
+    camera.pos.add(PVector.mult(planet.vel, dt));
 
     ellipseMode(CENTER);
-    background(0);
     //drawing stars
     pushMatrix();
     scale(camera.zoom);
@@ -121,6 +134,7 @@ void draw() {
 
 
     drawScale();
+    fill(255);
   }
 }
 
@@ -179,8 +193,10 @@ void drawScale() {
     for (float x = len / 5; x < len; x += len / 5) {
         line(20 + x, height - 53, 20 + x, height - 47);
     }
+
 }
 
+//keys used for intro
 void keyPressed(){
   if(keyCode == ENTER){
     running = true;
@@ -194,7 +210,6 @@ void keyPressed(){
     instruct = false;
   }
 
-    
-    image(photo,width/2, height/2);
+}
 
 }

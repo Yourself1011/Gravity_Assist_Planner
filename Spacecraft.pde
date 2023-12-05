@@ -8,7 +8,12 @@ class Spacecraft extends GravityObject {
     }
 
     void set(PVector pos, PVector vel, float m, float r) {
-        this.pos[0] = pos;
+        this.pos = new PVector[] {
+            pos.copy().add(vel),
+            pos.copy(),
+            pos.copy(),
+            pos.copy(),
+        };
         this.vel = vel;
         this.mass = m;
         this.radius = r;
