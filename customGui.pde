@@ -21,6 +21,4 @@ class LogSlider extends GSlider {
 			eventHandlerMethodName = "";
 		}
 	}
-
-    // public void slider2_change1(LogSlider ogslider, GEvent event) { slider2_change1(ogslider, event); }
 }

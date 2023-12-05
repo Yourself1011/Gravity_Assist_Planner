@@ -28,19 +28,19 @@ public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:2
   // get the spacecraft name and set values accordingly
   String spType = spPreset.getSelectedText();
   
-  if (spType == "Voyager 1") {
+  if (spType.equals("Voyager 1")) {
     setSPValues(722, 1020, 300, 75);
     getspValues();
     clear();
   }
   
-  if (spType == "Sputnik 1") {
+  if (spType.equals("Sputnik 1")) {
    setSPValues(84, 28000, 450, 45); 
    getspValues();
    clear();
   }
   
-  if (spType == "Galileo") {
+  if (spType.equals("Galileo")) {
    setSPValues(2573, 47000, 380, 60); 
    getspValues();
    clear();
@@ -51,25 +51,25 @@ public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:2
 public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241108:
   String pType = pPreset.getSelectedText();
   
-  if (pType == "Mars"){
+  if (pType.equals("Mars")){
     setPValues(6.39e23, 53979, 3.389);
     getpValues();
     clear();
   }
   
-  if (pType == "Saturn") {
+  if (pType.equals("Saturn")) {
     setPValues(5.68e26, 21637, 58.232);
     getpValues();
     clear();
   }
   
-  if (pType == "Neptune") {
+  if (pType.equals("Neptune")) {
    setPValues(1.024e26, 12146, 24.622); 
    getpValues();
    clear();
   }
 
-  if (pType == "Earth") {
+  if (pType.equals("Earth")) {
    setPValues(6.6e21, 67000, 6.371); 
    getpValues();
    clear();
