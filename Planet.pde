@@ -1,4 +1,4 @@
-class Planet extends GravityObject {
+ class Planet extends GravityObject {
 // FIELDS
   float radius;
 
@@ -7,6 +7,7 @@ class Planet extends GravityObject {
     super(new PVector(0, 0), new PVector(xV, yV), new PVector(xP, yP), m);
     //this.col = c;
     this.radius = r;
+
     }
 
   void drawPlanet() {

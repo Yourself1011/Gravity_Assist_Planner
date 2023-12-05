@@ -16,41 +16,84 @@
 
 public void massChange_slidder(GSlider source, GEvent event) { //_CODE_:spMass:266849:
   spacecraft.mass = spMass.getValueF();
+  clear();
 } //_CODE_:spMass:266849:
 
 public void slider2_change1(GSlider source, GEvent event) { //_CODE_:planetMass:539922:
   planet.mass = planetMass.getValueF()*(pow(10,24));
+  clear();
 } //_CODE_:planetMass:539922:
 
 public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:253720:
-  println("spPreset - GDropList >> GEvent." + event + " @ " + millis());
   // get the spacecraft name and set values accordingly
   String spType = spPreset.getSelectedText();
   
   if (spType == "Voyager 1") {
-    
+    setSPValues(722, 1020, 300, 75);
+    getspValues();
+    clear();
   }
+  
+  if (spType == "Sputnik 1") {
+   setSPValues(84, 28000, 450, 45); 
+   getspValues();
+   clear();
+  }
+  
+  if (spType == "Galileo") {
+   setSPValues(2573, 47000, 380, 60); 
+   getspValues();
+   clear();
+  }
+  
 } //_CODE_:spPreset:253720:
 
 public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241108:
-  println("pPreset - GDropList >> GEvent." + event + " @ " + millis());
+  String pType = pPreset.getSelectedText();
+  
+  if (pType == "Mars"){
+    setPValues(6.39e23, 53979, 3.389);
+    getpValues();
+    clear();
+  }
+  
+  if (pType == "Saturn") {
+    setPValues(5.68e26, 21637, 58.232);
+    getpValues();
+    clear();
+  }
+  
+  if (pType == "Neptune") {
+   setPValues(1.024e26, 12146, 24.622); 
+   getpValues();
+   clear();
+  }
+
+  if (pType == "Earth") {
+   setPValues(6.6e21, 67000, 6.371); 
+   getpValues();
+   clear();
+  }
+
 } //_CODE_:pPreset:241108:
 
 public void slider1_change2(GSlider source, GEvent event) { //_CODE_:pOrbitSpeed:346573:
   planet.vel.x = pOrbitSpeed.getValueF();
+  clear();
 } //_CODE_:pOrbitSpeed:346573:
 
 public void slider1_change3(GSlider source, GEvent event) { //_CODE_:spInitialSpeed:483261:
   spacecraft.vel.setMag(spInitialSpeed.getValueF());
+  clear();
 } //_CODE_:spInitialSpeed:483261:
 
 public void slider1_change4(GSlider source, GEvent event) { //_CODE_:spInitialPos:965079:
   spacecraft.pos[0].x = spInitialPos.getValueF();
+  clear();
 } //_CODE_:spInitialPos:965079:
 
-
 public void slider2_change2(GSlider source, GEvent event) { //_CODE_:spInitialAngle:697099:
-  println("pInitialAngle - GSlider >> GEvent." + event + " @ " + millis());
+  spacecraft.radians(spInitialAngle.getValueF()));
 } //_CODE_:spInitialAngle:697099:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:Demo1:443366:
@@ -69,6 +112,11 @@ public void button4_click1(GButton source, GEvent event) { //_CODE_:demo4:484823
   println("demo4 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:demo4:484823:
 
+public void slider1_change1(GSlider source, GEvent event) { //_CODE_:pRadius:870883:
+  planet.radius = pRadius.getValueF() * 1e6;
+  clear();
+} //_CODE_:pRadius:870883:
+
 
 
 // Create all the GUI controls. 
@@ -79,7 +127,7 @@ public void createGUI(){
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
   spMass = new GSlider(this, 25, 38, 147, 40, 10.0);
-  spMass.setLimits(6500.0, 1000.0, 10000.0);
+  spMass.setLimits(3000.0, 50.0, 3000.0);
   spMass.setNumberFormat(G4P.DECIMAL, 2);
   spMass.setOpaque(false);
   spMass.addEventHandler(this, "massChange_slidder");
@@ -92,7 +140,7 @@ public void createGUI(){
   spPreset = new GDropList(this, 44, 221, 103, 80, 3, 10);
   spPreset.setItems(loadStrings("list_253720"), 0);
   spPreset.addEventHandler(this, "spPresetOpened");
-  pPreset = new GDropList(this, 270, 126, 101, 80, 3, 10);
+  pPreset = new GDropList(this, 268, 165, 101, 80, 3, 10);
   pPreset.setItems(loadStrings("list_241108"), 0);
   pPreset.addEventHandler(this, "pPresetOpened");
   pOrbitSpeed = new GSlider(this, 242, 76, 163, 40, 10.0);
@@ -101,32 +149,39 @@ public void createGUI(){
   pOrbitSpeed.setOpaque(false);
   pOrbitSpeed.addEventHandler(this, "slider1_change2");
   spInitialSpeed = new GSlider(this, 22, 79, 149, 40, 10.0);
-  spInitialSpeed.setLimits(0.5, 0.0, 1.0);
+  spInitialSpeed.setLimits(1000.0, 1000.0, 50000.0);
   spInitialSpeed.setNumberFormat(G4P.DECIMAL, 2);
   spInitialSpeed.setOpaque(false);
   spInitialSpeed.addEventHandler(this, "slider1_change3");
   spInitialPos = new GSlider(this, 23, 121, 149, 40, 10.0);
-  spInitialPos.setLimits(0.5, 0.0, 1.0);
+  spInitialPos.setLimits(0.5, 0.0, 600.0);
   spInitialPos.setNumberFormat(G4P.DECIMAL, 2);
   spInitialPos.setOpaque(false);
   spInitialPos.addEventHandler(this, "slider1_change4");
   spInitialAngle = new GSlider(this, 26, 163, 147, 40, 10.0);
-  spInitialAngle.setLimits(0.5, 0.0, 1.0);
+  spInitialAngle.setLimits(90.0, 0.0, 180.0);
   spInitialAngle.setNumberFormat(G4P.DECIMAL, 2);
   spInitialAngle.setOpaque(false);
   spInitialAngle.addEventHandler(this, "slider2_change2");
-  Demo1 = new GButton(this, 214, 196, 80, 30);
+  Demo1 = new GButton(this, 186, 212, 80, 30);
   Demo1.setText("Demo 1");
   Demo1.addEventHandler(this, "button1_click1");
-  demo2 = new GButton(this, 333, 195, 80, 30);
+  demo2 = new GButton(this, 335, 211, 80, 30);
   demo2.setText("Demo 2");
   demo2.addEventHandler(this, "button2_click1");
-  demo3 = new GButton(this, 214, 243, 80, 30);
+  demo3 = new GButton(this, 186, 269, 80, 30);
   demo3.setText("Demo 3");
   demo3.addEventHandler(this, "button3_click1");
-  demo4 = new GButton(this, 334, 242, 80, 30);
+  demo4 = new GButton(this, 337, 268, 80, 30);
   demo4.setText("Demo 4");
   demo4.addEventHandler(this, "button4_click1");
+  pRadius = new GSlider(this, 244, 115, 162, 40, 10.0);
+  pRadius.setShowValue(true);
+  pRadius.setShowLimits(true);
+  pRadius.setLimits(6.3, 2.5, 60.0);
+  pRadius.setNumberFormat(G4P.DECIMAL, 2);
+  pRadius.setOpaque(false);
+  pRadius.addEventHandler(this, "slider1_change1");
 }
 
 // Variable declarations 
@@ -144,3 +199,4 @@ GButton Demo1;
 GButton demo2; 
 GButton demo3; 
 GButton demo4; 
+GSlider pRadius; 

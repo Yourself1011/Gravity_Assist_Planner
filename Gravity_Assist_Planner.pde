@@ -51,8 +51,8 @@ void draw() {
     pPreset.setVisible(false);
     spInitialSpeed.setVisible(false);
     pOrbitSpeed.setVisible(false);
-    pInitialPos.setVisible(false);
-    pInitialAngle.setVisible(false);
+    spInitialPos.setVisible(false);
+    spInitialAngle.setVisible(false);
     Demo1.setVisible(false);
     demo2.setVisible(false);
     demo3.setVisible(false);
@@ -78,8 +78,9 @@ void draw() {
     pPreset.setVisible(true);
     spInitialSpeed.setVisible(true);
     pOrbitSpeed.setVisible(true);
-    pInitialPos.setVisible(true);
-    pInitialAngle.setVisible(true);
+    pRadius.setVisible(true);
+    spInitialPos.setVisible(true);
+    spInitialAngle.setVisible(true);
     Demo1.setVisible(true);
     demo2.setVisible(true);
     demo3.setVisible(true);
@@ -123,11 +124,24 @@ void draw() {
   }
 }
 
+void getpValues() {
+  planet.mass = planetMass.getValueF();
+  planet.vel.x = pOrbitSpeed.getValueF();
+  planet.radius = pRadius.getValueF() * 1000;
+}
+
+void setPValues(float pMass, float pVel, float r ) {
+  planetMass.setValue(pMass);
+  pOrbitSpeed.setValue(pVel);
+  pRadius.setValue(r);
+  
+}
+
 void getspValues(){
   spacecraft.mass = spMass.getValueF();
   spacecraft.vel.setMag( spInitialSpeed.getValueF());
   spacecraft.pos[0].x = spInitialPos.getValueF();
-  
+  spacecraft.vel.rotate(radians(spInitialAngle.getValueF()));
   
 }
 
