@@ -54,25 +54,25 @@ public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241
   String pType = pPreset.getSelectedText();
   
   if (pType.equals("Mars")){
-    setPValues(6.39e23, 53979, 3.389);
+    setPValues(6.39e23, 24000, 3.389);
     getpValues();
     clear();
   }
   
   if (pType.equals("Saturn")) {
-    setPValues(5.68e26, 21637, 58.232);
+    setPValues(5.683e26, 9670, 58.232);
     getpValues();
     clear();
   }
   
   if (pType.equals("Neptune")) {
-   setPValues(1.024e26, 12146, 24.622); 
+   setPValues(1.024e26, 5430, 24.622); 
    getpValues();
    clear();
   }
 
   if (pType.equals("Earth")) {
-   setPValues(6.6e21, 67000, 6.371); 
+   setPValues(5.97219e24, 29800, 6.371); 
    getpValues();
    clear();
   }

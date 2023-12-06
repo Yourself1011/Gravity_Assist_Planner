@@ -130,7 +130,7 @@ void getpValues() {
 }
 
 void setPValues(float pMass, float pVel, float r ) {
-  planetMass.setValue(pMass);
+  planetMass.setValue(log(pMass)/log(10));
   pOrbitSpeed.setValue(pVel);
   pRadius.setValue(r);
   
@@ -138,9 +138,8 @@ void setPValues(float pMass, float pVel, float r ) {
 
 void getspValues(){
   spacecraft.mass = spMass.getValueF();
-  spacecraft.vel.set(-1, 0).rotate(radians(spInitialAngle.getValueF()));
-  spacecraft.vel.setMag( spInitialSpeed.getValueF());
-  spacecraft.pos[0].set(spInitialPos.getValueF(), 1e7);
+  spacecraft.vel.set(-spInitialSpeed.getValueF(), 0).rotate(radians(spInitialAngle.getValueF())).add(planet.vel);
+  spacecraft.pos[0].set(spInitialPos.getValueF() - planet.radius, 1e7 + planet.radius);
 }
 
 void setSPValues(int sPmass, int initialSpeed, int initialPos, int initialAngle ){
