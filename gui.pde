@@ -33,21 +33,25 @@ public void spPresetOpened(GDropList source, GEvent event) { //_CODE_:spPreset:2
   if (spType.equals("Voyager 1")) {
     setSPValues(722, 1020, 300, 75);
     getspValues();
+    spacecraft.image = loadImage("voyager_1.png");
     clear();
   }
   
   if (spType.equals("Sputnik 1")) {
    setSPValues(84, 28000, 450, 45); 
    getspValues();
+    spacecraft.image = loadImage("sputnik_1.png");
    clear();
   }
   
   if (spType.equals("Galileo")) {
    setSPValues(2573, 47000, 380, 60); 
    getspValues();
+    spacecraft.image = loadImage("galileo.png");
    clear();
   }
   
+  getpValues();
 } //_CODE_:spPreset:253720:
 
 public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241108:
@@ -56,27 +60,32 @@ public void pPresetOpened(GDropList source, GEvent event) { //_CODE_:pPreset:241
   if (pType.equals("Mars")){
     setPValues(6.39e23, 24000, 3.389);
     getpValues();
+    planet.image = loadImage("mars.png");
     clear();
   }
   
   if (pType.equals("Saturn")) {
-    setPValues(5.683e26, 9670, 58.232);
+    setPValues(5.683e26, 9670, 135);
     getpValues();
+    planet.image = loadImage("saturn.png");
     clear();
   }
   
   if (pType.equals("Neptune")) {
    setPValues(1.024e26, 5430, 24.622); 
    getpValues();
+    planet.image = loadImage("neptune.png");
    clear();
   }
 
   if (pType.equals("Earth")) {
    setPValues(5.97219e24, 29800, 6.371); 
    getpValues();
+    planet.image = loadImage("earth.png");
    clear();
   }
 
+  getspValues();
 } //_CODE_:pPreset:241108:
 
 public void slider1_change2(GSlider source, GEvent event) { //_CODE_:pOrbitSpeed:346573:

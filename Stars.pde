@@ -2,7 +2,6 @@ class Star{
   float x;
   float y;
   float s;
-  int edge = 50;
   PVector velocity, accelerate, location;
 
  Star(){
@@ -24,7 +23,7 @@ class Star{
  void update(){
    //if star location is less than 0, it'll reset it's position
    if(location.x < camera.pos.x - width / camera.zoom){
-     location.x = camera.pos.x + width / camera.zoom;//+edge;
+     location.x = camera.pos.x + width / camera.zoom;
    }
    
    velocity.add(PVector.mult(accelerate, dt));
