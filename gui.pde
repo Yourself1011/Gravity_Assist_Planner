@@ -143,11 +143,7 @@ public void slider1_change1(GSlider source, GEvent event) { //_CODE_:pRadius:870
 } //_CODE_:pRadius:870883:
 
 public void slider1_change5(GSlider source, GEvent event) { //_CODE_:tValue:491145:
-  if (tValue.getValueF() == 0) {
-     t = 1.0/1000;
-  } else {
-    t = log(tValue.getValueF())/log(10) / 1000;
-  }
+    t = pow(10, tValue.getValueF()) / 1000;
 } //_CODE_:tValue:491145:
 
 
@@ -281,7 +277,7 @@ public void createGUI(){
   tValue = new LogSlider(this, 20, 375, 151, 40, 10.0);
   tValue.setShowValue(true);
   tValue.setShowLimits(true);
-  tValue.setLimits(0, -1, 3.0);
+  tValue.setLimits(0, -2, 3.0);
   tValue.setNumberFormat(G4P.DECIMAL, 2);
   tValue.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   tValue.setOpaque(false);
