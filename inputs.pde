@@ -39,6 +39,19 @@ void keyPressed(){
     demo2.setVisible(true);
     demo3.setVisible(true);
     demo4.setVisible(true);
+    
+    spLabels.setVisible(true);
+    spMassLabel.setVisible(true);
+    spInitialSpeedLabel.setVisible(true);
+    spInitialPosLabel.setVisible(true);
+    spInitialAngleLabel.setVisible(true);
+    pLabels.setVisible(true);
+    pMassLabel.setVisible(true);
+    pOrbitSpeedLabel.setVisible(true);
+    pRadiusLabel.setVisible(true);
+    pRadius.setVisible(true);
+    tValue.setVisible(true);
+    
   }
   
   if(keyCode == RIGHT){

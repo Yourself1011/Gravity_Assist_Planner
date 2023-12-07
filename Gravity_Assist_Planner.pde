@@ -6,7 +6,7 @@ boolean instruct;
 Planet planet = new Planet(0, 0, 5.972e24, 6378100, 29800, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
 Star [] stars = new Star [1000];
-float t = 1000.0/1000, dt = 1, prevDt = 1;
+float t = 100/1000, dt = 1, prevDt = 1;
 int prevFrame, frameLength;
 float[] mults = {1, 0.5, 0.5, 1}; // multipliers for rk4
 
@@ -53,6 +53,17 @@ void draw() {
     demo2.setVisible(false);
     demo3.setVisible(false);
     demo4.setVisible(false);
+    spLabels.setVisible(false);
+    spMassLabel.setVisible(false);
+    spInitialSpeedLabel.setVisible(false);
+    spInitialPosLabel.setVisible(false);
+    spInitialAngleLabel.setVisible(false);
+    pLabels.setVisible(false);
+    pMassLabel.setVisible(false);
+    pOrbitSpeedLabel.setVisible(false);
+    pRadiusLabel.setVisible(false);
+    pRadius.setVisible(false);
+    tValue.setVisible(false);
     textSize(35);
     textAlign(CENTER);
     image(photo, width/2, height/2);
