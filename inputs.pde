@@ -26,7 +26,7 @@ void keyPressed(){
   if(keyCode == ENTER){
     running = true;
     prevFrame = millis();
-    //making GUI visible
+    //making GUI visible if user enters program
     spMass.setVisible(true);
     planetMass.setVisible(true);
     spPreset.setVisible(true);
@@ -35,6 +35,7 @@ void keyPressed(){
     pOrbitSpeed.setVisible(true);
     spInitialPos.setVisible(true);
     spInitialAngle.setVisible(true);
+    pRadius.setVisible(true);
     Demo1.setVisible(true);
     demo2.setVisible(true);
     demo3.setVisible(true);

@@ -52,6 +52,7 @@ void draw() {
     pOrbitSpeed.setVisible(false);
     spInitialPos.setVisible(false);
     spInitialAngle.setVisible(false);
+    pRadius.setVisible(false);
     Demo1.setVisible(false);
     demo2.setVisible(false);
     demo3.setVisible(false);
