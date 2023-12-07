@@ -52,6 +52,7 @@ void keyPressed(){
     pRadiusLabel.setVisible(true);
     pRadius.setVisible(true);
     tValue.setVisible(true);
+    speedLabel.setVisible(true);
     
   }
   

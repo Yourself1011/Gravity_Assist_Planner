@@ -6,7 +6,7 @@ class LogSlider extends GSlider {
 
     @Override
     protected String getNumericDisplayString(float number) {
-      return String.valueOf(pow(10, number));
+      return String.valueOf(pow(10, number)) + unit;
     }
 
     @Override

@@ -22,15 +22,17 @@ void setup() {
     for(int i = 0; i < stars.length; i ++){
       stars[i] = new Star();
     }
-    // spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(0, 27600/3.6), 450000, 100);
+     spacecraft.set(new PVector(planet.radius + 422000, 0), new PVector(0, 27600/3.6), 450000, 3);
     // spacecraft2.set(new PVector(planet.radius + 422000, 0), new PVector(0, 27600/3.6), 450000, 100);
-    spacecraft.set(new PVector(-planet.radius - 384400000, 0), new PVector(0, -1022), 7.342e22, 1738100); // moon
+    //spacecraft.set(new PVector(-planet.radius - 384400000, 0), new PVector(0, -1022), 7.342e22, 1738100); // moon
     // spacecraft2.set(new PVector(planet.radius + 384400000, 0), new PVector(0, 1022), 7.342e22, 1738100);
 
     planet.image = loadImage("earth.png");
     spacecraft.image = loadImage("voyager_1.png");
     camera.translate(-width/2, -height/2);
     prevFrame = millis();
+    //GCScheme.changePalette(8, new int[] {255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255});
+    //GCScheme.savePalettes(this);
 }
 
 void draw() {
@@ -68,6 +70,7 @@ void draw() {
     pRadiusLabel.setVisible(false);
     pRadius.setVisible(false);
     tValue.setVisible(false);
+    speedLabel.setVisible(false);
     textSize(35);
     textAlign(CENTER);
     image(photo, width/2, height/2);
