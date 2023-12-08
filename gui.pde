@@ -163,7 +163,7 @@ public void createGUI(){
   spMass.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   spMass.setOpaque(false);
   spMass.addEventHandler(this, "massChange_slidder");
-  planetMass = new GSlider(this, 245, 57, 161, 40, 10.0);
+  planetMass = new LogSlider(this, 245, 57, 161, 40, 10.0);
   planetMass.setShowValue(true);
   planetMass.setShowLimits(true);
   planetMass.setLimits(24.77612, 20.0, 30.0);
