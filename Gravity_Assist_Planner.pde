@@ -181,7 +181,8 @@ void setPValues(float pMass, float pVel, float r ) {
 void getspValues(){
   spacecraft.mass = spMass.getValueF();
   spacecraft.vel.set(-spInitialSpeed.getValueF(), 0).rotate(radians(spInitialAngle.getValueF())).add(planet.vel);
-  spacecraft.pos[0].set(spInitialPos.getValueF() - planet.radius, 1e7 + planet.radius);
+  spacecraft.pos[0].set(-spInitialPos.getValueF() - planet.radius, 2e7 + planet.radius);
+  spacecraft.exploded = false;
 }
 
 void setSPValues(int sPmass, int initialSpeed, int initialPos, int initialAngle ){

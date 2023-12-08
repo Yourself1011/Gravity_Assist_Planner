@@ -199,8 +199,8 @@ public void createGUI(){
   spInitialPos = new GSlider(this, 24, 175, 149, 40, 10.0);
   spInitialPos.setShowValue(true);
   spInitialPos.setShowLimits(true);
-  spInitialPos.setLimits(0.5, 0.0, 600.0);
-  spInitialPos.setNumberFormat(G4P.DECIMAL, 2);
+  spInitialPos.setLimits(0.5, 0.0, 1e8);
+  spInitialPos.setNumberFormat(G4P.EXPONENT, 2);
   spInitialPos.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   spInitialPos.setOpaque(false);
   spInitialPos.addEventHandler(this, "slider1_change4");
