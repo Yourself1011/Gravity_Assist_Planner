@@ -2,6 +2,7 @@ import g4p_controls.*;
 PImage photo;
 boolean running;
 boolean instruct;
+boolean info;
 
 Planet planet = new Planet(0, 0, 5.972e24, 6378100, 0, 0);
 Spacecraft spacecraft = new Spacecraft(#00FF00), spacecraft2 = new Spacecraft(#0000FF);
@@ -17,6 +18,7 @@ void setup() {
     photo = loadImage("spacey.png");
     running = false;
     instruct = false;
+    info = false;
     createGUI();
 
     for(int i = 0; i < stars.length; i ++){
@@ -91,7 +93,26 @@ void draw() {
       text("Use the demos to get inspired!", width/2, height/2.5);
       textSize(25);
       text("Press the left arrow to go back", width/2, height/2);
+      text("Press the up arrow to learn more about gravity assist and how the sliders affect the simulation", width/2, height/1.5);
     }
+    
+   if(info == true){
+     background(0);
+     textSize(35);
+     text("Science behind Gravity Assist", width/2, height/7);
+     textSize(30);
+     text("Gravity assist is most commonly used to speed up a spacecraft when it is near a planet.", width/2, height/5);
+     text("A spacecraft will get pulled into the planet due to is gravitational force.", width/2, height/4);
+     text("Some of the planet's kinetic energy will transfer to the spacecraft, adding to its net energy.", width/2, height/3.2);
+     text("This is what allows the spacecraft to speed up!", width/2, height/2.6);
+     textSize(25);
+     text("When adjusting the sliders, it might be helpful to remember the gravitational formula: F = (GMm)/r^2", width/2, height/2);
+     text("Force is directly proportional to mass. If the planet or spacecraft is too light, the force will be too small.", width/2, height/1.7);
+     text("This would not allow for a proper gravity assist, and vice versa.", width/2, height/1.6);
+     text("In addition, force is inversely proportional to the radius between the objects.", width/2, height/1.4);
+     text("If the radius between the spcacecraft and planet is too large, force will be too small.", width/2, height/1.3);
+     text("This would not allow for a proper gravity assist, and vice versa.", width/2, height/1.2);
+   }
   }
   
     else{

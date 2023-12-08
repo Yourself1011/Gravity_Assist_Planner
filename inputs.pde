@@ -63,8 +63,16 @@ void keyPressed(){
   if(keyCode == LEFT){
     instruct = false;
   }
+  
+  if(keyCode == UP){
+    info = true;
+  }
+  
+  if(keyCode == DOWN){
+    info = false;
+  }
 
     
-    image(photo,width/2, height/2);
+    //image(photo,width/2, height/2);
 
 }
