@@ -107,10 +107,10 @@ void draw() {
      textSize(25);
      text("When adjusting the sliders, it might be helpful to remember the gravitational formula: F = (GMm)/r^2", width/2, height/2);
      text("Force is directly proportional to mass. If the planet or spacecraft is too light, the force will be too small.", width/2, height/1.7);
-     text("This would not allow for a proper gravity assist, and vice versa.", width/2, height/1.6);
-     text("In addition, force is inversely proportional to the radius between the objects.", width/2, height/1.4);
-     text("If the radius between the spcacecraft and planet is too large, force will be too small.", width/2, height/1.3);
-     text("This would not allow for a proper gravity assist, and vice versa.", width/2, height/1.2);
+     text("This would not allow for an effective gravity assist, and vice versa.", width/2, height/1.6);
+     text("In addition, force is inversely proportional to the distance between the objects.", width/2, height/1.4);
+     text("If the distance between the spacecraft and planet is too large, force will be too small.", width/2, height/1.3);
+     text("This would not allow for an effective gravity assist, and vice versa.", width/2, height/1.2);
      text("Press the down arrow to go back", width/2, height/1.1);
    }
   }
