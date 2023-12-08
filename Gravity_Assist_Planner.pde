@@ -132,7 +132,9 @@ void draw() {
     // planet.velVerlet(spacecraft);
     // spacecraft.velVerlet(planet);
     planet.leapFrog(spacecraft);
-    spacecraft.leapFrog(planet);
+    if (!spacecraft.exploded) {
+      spacecraft.leapFrog(planet);
+    }
 
     camera.pos.add(PVector.mult(planet.vel, dt));
 
